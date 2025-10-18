@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Space+Grotesk:wght@500&display=swap");
+
 * {
     padding: 0;
     margin: 0;
@@ -15,38 +17,41 @@ body {
     width: 100vw;
     height: 100vh;
     overflow: hidden;
-    background: #0ba1c6;
+    background: linear-gradient(to right, rgba(32, 1, 34, 0.8), rgba(111, 0, 0, 0.8), rgba(32, 1, 34, 0.8));
 }
 
 .container {
     width: 500px;
     height: 300px;
-    background: #fff;
-    position: absolute;
+    position: relative;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%) skewY(-5deg);
     padding: 20px;
-    border: 2px solid #262626;
     border-radius: 5px;
-    box-shadow: -1px -1px 0 #444, -2px -2px 0 #444, -3px -3px 0 #444, -4px -4px 0 #444, -5px -5px 0 #444,
-        -6px -6px 0 #444;
-    transition: 0.5s;
-}
-
-.container:hover {
-    transform: translate(-50%, -50%) skewY(5deg);
-    box-shadow: 1px -1px 0 #444, 2px -2px 0 #444, 3px -3px 0 #444, 4px -4px 0 #444, 5px -5px 0 #444, 6px -6px 0 #444;
+    box-shadow: -1px -1px 0 #2b2b2b, -2px -2px 0 #2b2b2b, -3px -3px 0 #2b2b2b, -4px -4px 0 #2b2b2b, -5px -5px 0 #2b2b2b,
+        -6px -6px 0 #2b2b2b;
+    backdrop-filter: blur(10px);
+    background: url(../images/cinema.jpg) 50% 50% no-repeat;
+    background-size: cover;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    color: #fff;
+    overflow: hidden;
+    transition: transform 0.35s ease-out, background-position 0.35s ease-out, box-shadow 0.35s ease;
 }
 
 .container p {
-    color: #262626;
+    font-family: "Poppins", sans-serif;
+    color: #c3c2c2;
     text-align: justify;
 }
 
 .container h1 {
-    margin: 20px 0;
+    font-family: "Space Grotesk", sans-serif;
+    letter-spacing: 1px;
+    margin: 40px 0;
     text-align: center;
+    text-transform: uppercase;
 }
 
 .container p:last-child {
@@ -55,28 +60,61 @@ body {
     font-weight: 500;
 }
 
+.container p,
+.container h1 {
+    opacity: 0.6;
+    transition: 0.5s ease;
+}
+
+.container:hover p,
+.container:hover h1 {
+    opacity: 1;
+    transform: translateY(-3px);
+}
+
+.container:hover h1 {
+    letter-spacing: 5px;
+}
+
 .container::before {
     content: "";
-    width: 30px;
-    height: 30px;
-    background: #fff;
     position: absolute;
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%) translateY(18px) rotate(45deg);
-    border-bottom: 2px solid #262626;
-    border-right: 2px solid #262626;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(120deg, transparent 40%, rgba(255, 255, 255, 0.4) 50%, transparent 60%);
+    transform: rotate(25deg);
+    animation: shine 3s infinite;
+}
+
+@keyframes shine {
+    0% {
+        transform: translateX(-100%) rotate(25deg);
+    }
+    100% {
+        transform: translateX(100%) rotate(25deg);
+    }
 }
 
 .container::after {
     content: "";
-    width: 100px;
-    height: 4px;
-    background: #000;
-    border-radius: 50%;
     position: absolute;
-    bottom: 0;
+    top: 50%;
     left: 50%;
-    transform: translateX(-50%) translateY(36px);
-    filter: blur(5px);
+    transform: translate(-50%, -50%) scale(0);
+    width: 600px;
+    height: 600px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(0, 0, 0, 0.6) 0%, transparent 70%);
+    filter: blur(50px);
+    opacity: 0;
+    pointer-events: none;
+    transition: transform 1s ease, opacity 1s ease;
+    z-index: 0;
+}
+
+.container:hover::after {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
 }
